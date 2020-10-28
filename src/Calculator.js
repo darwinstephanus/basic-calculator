@@ -12,8 +12,9 @@ export default class Calculator extends React.Component {
     this.state = {
       input: "",
       previousNumber: "0",
-      specialEqualNumber: "",
       operator: "",
+      lastOperandNumber: "",
+      lastOperator: "",
     };
   }
 
@@ -43,17 +44,23 @@ export default class Calculator extends React.Component {
     this.setState({
       input: "",
       previousNumber: "0",
-      specialEqualNumber: "0",
       operator: "",
+      lastOperandNumber: "0",
+      lastOperator: "",
     });
   };
 
   addition = () => {
     this.setState({ operator: "plus" });
     if (this.state.input !== "") {
+      //this previousNumber is important for the very first number
       this.setState({ previousNumber: this.state.input });
       this.setState({ input: "" });
-      this.setState({ operator: "plus" });
+      this.setState({ lastOperator: "plus" });
+      /*
+      when we evaluate the first number, state of operator is still "" even though we just set it because we are preparing
+      it for the next input
+      */
       this.evaluate();
     }
   };
@@ -83,63 +90,44 @@ export default class Calculator extends React.Component {
   };
 
   equalSign = () => {
-    if (this.state.operator === "plus") {
+    if (this.state.input !== "") {
       this.setState({
-        previousNumber:
-          parseFloat(this.state.previousNumber) +
-          (this.state.input === ""
-            ? parseFloat(this.state.specialEqualNumber)
-            : parseFloat(this.state.input)),
-      });
-      this.setState({
-        specialEqualNumber:
+        lastOperandNumber:
           this.state.input === ""
-            ? this.state.specialEqualNumber
+            ? this.state.lastOperandNumber
             : this.state.input,
       });
-    } else if (this.state.operator === "substract") {
-      this.setState({
-        previousNumber:
-          parseFloat(this.state.previousNumber) -
-          (this.state.input === ""
-            ? parseFloat(this.state.specialEqualNumber)
-            : parseFloat(this.state.input)),
-      });
-      this.setState({
-        specialEqualNumber:
-          this.state.input === ""
-            ? this.state.specialEqualNumber
-            : this.state.input,
-      });
-    } else if (this.state.operator === "multiply") {
-      this.setState({
-        previousNumber:
-          parseFloat(this.state.previousNumber) *
-          (this.state.input === ""
-            ? parseFloat(this.state.specialEqualNumber)
-            : parseFloat(this.state.input)),
-      });
-      this.setState({
-        specialEqualNumber:
-          this.state.input === ""
-            ? this.state.specialEqualNumber
-            : this.state.input,
-      });
-    } else if (this.state.operator === "divide") {
-      this.setState({
-        previousNumber:
-          parseFloat(this.state.previousNumber) /
-          (this.state.input === ""
-            ? parseFloat(this.state.specialEqualNumber)
-            : parseFloat(this.state.input)),
-      });
-      this.setState({
-        specialEqualNumber:
-          this.state.input === ""
-            ? this.state.specialEqualNumber
-            : this.state.input,
-      });
+      this.setState({ lastOperator: this.state.operator });
+      this.evaluate();
+    } else {
+      if (this.state.lastOperator === "plus") {
+        this.setState({
+          previousNumber:
+            parseFloat(this.state.previousNumber) +
+            parseFloat(this.state.lastOperandNumber),
+        });
+      } else if (this.state.lastOperator === "substract") {
+        this.setState({
+          previousNumber:
+            parseFloat(this.state.previousNumber) -
+            parseFloat(this.state.lastOperandNumber),
+        });
+      } else if (this.state.lastOperator === "multiply") {
+        this.setState({
+          previousNumber:
+            parseFloat(this.state.previousNumber) *
+            parseFloat(this.state.lastOperandNumber),
+        });
+      } else if (this.state.lastOperator === "divide") {
+        this.setState({
+          previousNumber:
+            parseFloat(this.state.previousNumber) /
+            parseFloat(this.state.lastOperandNumber),
+        });
+      }
     }
+
+    this.setState({ operator: "" });
     this.setState({ input: "" });
   };
 
@@ -148,7 +136,7 @@ export default class Calculator extends React.Component {
     if (this.state.input !== "") {
       this.setState({ previousNumber: this.state.input });
       this.setState({ input: "" });
-      this.setState({ operator: "substract" });
+      this.setState({ lastOperator: "substract" });
       this.evaluate();
     }
     console.log(this.state);
@@ -159,7 +147,7 @@ export default class Calculator extends React.Component {
     if (this.state.input !== "") {
       this.setState({ previousNumber: this.state.input });
       this.setState({ input: "" });
-      this.setState({ operator: "multiply" });
+      this.setState({ lastOperator: "multiply" });
       this.evaluate();
     }
     console.log(this.state);
@@ -168,19 +156,15 @@ export default class Calculator extends React.Component {
   divide = () => {
     this.setState({ operator: "divide" });
     if (this.state.input !== "") {
-      this.setState({ previousNumber: this.state.input });
+      // this.setState({ previousNumber: this.state.input });
       this.setState({ input: "" });
-      this.setState({ operator: "divide" });
+      this.setState({ lastOperator: "divide" });
       this.evaluate();
     }
     console.log(this.state);
   };
 
   plusMinus = () => {
-    //we want to plusMinus the value shown in the screen right now
-    //{this.state.input === ""
-    //? this.state.previousNumber
-    //: this.state.input}
     if (this.state.input === "") {
       this.setState({
         previousNumber:
