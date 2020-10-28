@@ -13,7 +13,7 @@ export default class App extends React.Component {
         <Calculator />
         {/* The below element is not rendered (obviously) */}
         {/* This is for Material UI task (see the README.md) */}
-        <div style={{ display: "none" }}>
+        <div>
           <Mui.Button variant="contained">
             Material UI Button example
           </Mui.Button>
