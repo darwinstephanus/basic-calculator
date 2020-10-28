@@ -16,12 +16,16 @@ export default class Calculator extends React.Component {
   }
 
   addToInput = (val) => {
-    this.setState({ input: this.state.input + val });
+    if (this.state.input === "0") {
+      this.setState({ input: val });
+    } else {
+      this.setState({ input: this.state.input + val });
+    }
   };
 
   addZeroToInput = (val) => {
     //if this.state.input not empty then you can add zero
-    if (this.state.input !== "") {
+    if (this.state.input !== "0") {
       this.setState({ input: this.state.input + val });
     }
   };
