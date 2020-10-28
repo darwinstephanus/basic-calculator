@@ -31,6 +31,8 @@ code {
   justify-content: center;
   padding: 0 33vw;
   width: 34vw;
+  /* border-style: solid;
+  border-color: red; */
 }
 
 .calc-row {
@@ -46,12 +48,25 @@ code {
 .calc * {
   width: 100%;
   padding: 5px 2px;
+
+  /* background-color: white; */
 }
 
 .calc-display {
   text-align: right;
+  /* font-size: 30;
+  border: none;
+  background-color: #282c34; */
 }
 
 .calc-button {
   width: 100%;
+  /* display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 8px; */
+}
+
+.calc-equal {
+  color: purple;
+  background: #f1a33c;
 }

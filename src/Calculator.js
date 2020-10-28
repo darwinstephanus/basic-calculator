@@ -3,6 +3,8 @@ import React from "react";
 import Row from "./components/Row";
 import Display from "./components/Display";
 import Button from "./components/Button";
+import OperatorButton from "./components/OperatorButton";
+import EqualButton from "./components/EqualButton";
 
 export default class Calculator extends React.Component {
   constructor(props) {
@@ -200,8 +202,13 @@ export default class Calculator extends React.Component {
   };
 
   render() {
+    // const screen = inputs.map((input) => input.val).join("");
+
     return (
       <div className="calc">
+        {/* <Row>
+          <Display>ABCBASDBJKASDLKASJDl</Display>
+        </Row> */}
         <Row>
           <Display>
             {this.state.input === ""
@@ -213,31 +220,31 @@ export default class Calculator extends React.Component {
           <Button handleClick={this.clearInput}>Clear</Button>
           <Button handleClick={this.removeLastCharacter}>←</Button>
           <Button disabled={true} />
-          <Button handleClick={this.addition}>+</Button>
+          <OperatorButton handleClick={this.addition}>+</OperatorButton>
         </Row>
         <Row>
           <Button handleClick={this.addToInput}>7</Button>
           <Button handleClick={this.addToInput}>8</Button>
           <Button handleClick={this.addToInput}>9</Button>
-          <Button handleClick={this.substract}>-</Button>
+          <OperatorButton handleClick={this.substract}>-</OperatorButton>
         </Row>
         <Row>
           <Button handleClick={this.addToInput}>4</Button>
           <Button handleClick={this.addToInput}>5</Button>
           <Button handleClick={this.addToInput}>6</Button>
-          <Button handleClick={this.multiply}>×</Button>
+          <OperatorButton handleClick={this.multiply}>×</OperatorButton>
         </Row>
         <Row>
           <Button handleClick={this.addToInput}>1</Button>
           <Button handleClick={this.addToInput}>2</Button>
           <Button handleClick={this.addToInput}>3</Button>
-          <Button handleClick={this.divide}>÷</Button>
+          <OperatorButton handleClick={this.divide}>÷</OperatorButton>
         </Row>
         <Row>
           <Button handleClick={this.addZeroToInput}>0</Button>
           <Button handleClick={this.plusMinus}>+/-</Button>
           <Button handleClick={this.addDecimal}>.</Button>
-          <Button handleClick={this.equalSign}>=</Button>
+          <EqualButton handleClick={this.equalSign}>=</EqualButton>
         </Row>
       </div>
     );

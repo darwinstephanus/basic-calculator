@@ -1,4 +1,5 @@
 import React from "react";
+import * as Mui from "@material-ui/core";
 
 export default class Button extends React.Component {
   forceSpace() {
@@ -7,13 +8,14 @@ export default class Button extends React.Component {
 
   render() {
     return (
-      <button
+      <Mui.Button
+        variant="contained"
         className="calc-button"
         disabled={this.props.disabled}
         onClick={() => this.props.handleClick(this.props.children)}
       >
         {this.props.disabled ? "\u00a0" : this.props.children}
-      </button>
+      </Mui.Button>
     );
   }
 }
