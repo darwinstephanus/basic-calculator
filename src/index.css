@@ -34,8 +34,8 @@ code {
 }
 
 .calc-container {
-  background-color: lightblue !important;
-  padding-bottom: 25px !important;
+  background-color: lightblue;
+  padding-bottom: 25px;
 }
 
 .calc-row {
