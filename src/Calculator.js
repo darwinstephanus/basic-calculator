@@ -3,8 +3,6 @@ import React from "react";
 import Row from "./components/Row";
 import Display from "./components/Display";
 import Button from "./components/Button";
-import OperatorButton from "./components/OperatorButton";
-import EqualButton from "./components/EqualButton";
 import Container from "@material-ui/core/Container";
 
 export default class Calculator extends React.Component {
@@ -54,7 +52,9 @@ export default class Calculator extends React.Component {
   addition = () => {
     this.setState({ operator: "plus" });
     if (this.state.input !== "") {
-      //this previousNumber is important for the very first number
+      /*
+      this previousNumber is important for the very first number
+      */
       this.setState({ previousNumber: this.state.input });
       this.setState({ input: "" });
       this.setState({ lastOperator: "plus" });
@@ -77,7 +77,9 @@ export default class Calculator extends React.Component {
         previousNumber:
           parseFloat(this.state.previousNumber) - parseFloat(this.state.input),
       });
-    } else if (this.state.operator === "multiply") {
+    }
+    /*
+    else if (this.state.operator === "multiply") {
       this.setState({
         previousNumber:
           parseFloat(this.state.previousNumber) * parseFloat(this.state.input),
@@ -88,6 +90,7 @@ export default class Calculator extends React.Component {
           parseFloat(this.state.previousNumber) / parseFloat(this.state.input),
       });
     }
+    */
   };
 
   equalSign = () => {
@@ -113,7 +116,9 @@ export default class Calculator extends React.Component {
             parseFloat(this.state.previousNumber) -
             parseFloat(this.state.lastOperandNumber),
         });
-      } else if (this.state.lastOperator === "multiply") {
+      }
+      /*
+      else if (this.state.lastOperator === "multiply") {
         this.setState({
           previousNumber:
             parseFloat(this.state.previousNumber) *
@@ -126,6 +131,7 @@ export default class Calculator extends React.Component {
             parseFloat(this.state.lastOperandNumber),
         });
       }
+      */
     }
 
     this.setState({ operator: "" });
@@ -140,10 +146,10 @@ export default class Calculator extends React.Component {
       this.setState({ lastOperator: "substract" });
       this.evaluate();
     }
-    console.log(this.state);
   };
 
   multiply = () => {
+    /*
     this.setState({ operator: "multiply" });
     if (this.state.input !== "") {
       this.setState({ previousNumber: this.state.input });
@@ -151,18 +157,19 @@ export default class Calculator extends React.Component {
       this.setState({ lastOperator: "multiply" });
       this.evaluate();
     }
-    console.log(this.state);
+    */
   };
 
   divide = () => {
+    /*
     this.setState({ operator: "divide" });
     if (this.state.input !== "") {
-      // this.setState({ previousNumber: this.state.input });
+      this.setState({ previousNumber: this.state.input });
       this.setState({ input: "" });
       this.setState({ lastOperator: "divide" });
       this.evaluate();
     }
-    console.log(this.state);
+    */
   };
 
   plusMinus = () => {
@@ -187,13 +194,8 @@ export default class Calculator extends React.Component {
   };
 
   render() {
-    // const screen = inputs.map((input) => input.val).join("");
-
     return (
       <div className="calc">
-        {/* <Row>
-          <Display>ABCBASDBJKASDLKASJDl</Display>
-        </Row> */}
         <Container className="calc-container" maxWidth="sm">
           <Row>
             <Display>
@@ -206,33 +208,41 @@ export default class Calculator extends React.Component {
             <Button handleClick={this.clearInput}>Clear</Button>
             <Button handleClick={this.removeLastCharacter}>←</Button>
             <Button disabled={true} />
-            <OperatorButton handleClick={this.addition}>+</OperatorButton>
+            <Button handleClick={this.addition} color="primary">
+              +
+            </Button>
           </Row>
           <Row>
             <Button handleClick={this.addToInput}>7</Button>
             <Button handleClick={this.addToInput}>8</Button>
             <Button handleClick={this.addToInput}>9</Button>
-            <OperatorButton handleClick={this.substract}>-</OperatorButton>
+            <Button handleClick={this.substract} color="primary">
+              -
+            </Button>
           </Row>
           <Row>
             <Button handleClick={this.addToInput}>4</Button>
             <Button handleClick={this.addToInput}>5</Button>
             <Button handleClick={this.addToInput}>6</Button>
-            <OperatorButton handleClick={this.multiply}>×</OperatorButton>
+            <Button handleClick={this.multiply} color="primary">
+              ×
+            </Button>
           </Row>
           <Row>
             <Button handleClick={this.addToInput}>1</Button>
             <Button handleClick={this.addToInput}>2</Button>
             <Button handleClick={this.addToInput}>3</Button>
-            <OperatorButton handleClick={this.divide}>÷</OperatorButton>
+            <Button handleClick={this.divide} color="primary">
+              ÷
+            </Button>
           </Row>
           <Row>
             <Button handleClick={this.addZeroToInput}>0</Button>
             <Button handleClick={this.plusMinus}>+/-</Button>
             <Button handleClick={this.addDecimal}>.</Button>
-            <EqualButton className="calc-equal" handleClick={this.equalSign}>
+            <Button handleClick={this.equalSign} color="secondary">
               =
-            </EqualButton>
+            </Button>
           </Row>
         </Container>
       </div>

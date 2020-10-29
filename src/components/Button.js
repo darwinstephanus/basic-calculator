@@ -1,5 +1,9 @@
 import React from "react";
 import * as Mui from "@material-ui/core";
+import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
+import { orange } from "@material-ui/core/colors";
+
+const orangeTheme = createMuiTheme({ palette: { secondary: orange } });
 
 export default class Button extends React.Component {
   forceSpace() {
@@ -8,14 +12,17 @@ export default class Button extends React.Component {
 
   render() {
     return (
-      <Mui.Button
-        variant="contained"
-        className="calc-button"
-        disabled={this.props.disabled}
-        onClick={() => this.props.handleClick(this.props.children)}
-      >
-        {this.props.disabled ? "\u00a0" : this.props.children}
-      </Mui.Button>
+      <MuiThemeProvider theme={orangeTheme}>
+        <Mui.Button
+          className="calc-button"
+          variant="contained"
+          color={this.props.color}
+          disabled={this.props.disabled}
+          onClick={() => this.props.handleClick(this.props.children)}
+        >
+          {this.props.disabled ? "\u00a0" : this.props.children}
+        </Mui.Button>
+      </MuiThemeProvider>
     );
   }
 }
