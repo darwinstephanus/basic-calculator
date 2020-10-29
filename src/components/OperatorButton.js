@@ -2,10 +2,6 @@ import React from "react";
 import * as Mui from "@material-ui/core";
 
 export default class OperatorButton extends React.Component {
-  forceSpace() {
-    return;
-  }
-
   render() {
     return (
       <Mui.Button

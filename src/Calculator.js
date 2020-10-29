@@ -5,6 +5,7 @@ import Display from "./components/Display";
 import Button from "./components/Button";
 import OperatorButton from "./components/OperatorButton";
 import EqualButton from "./components/EqualButton";
+import Container from "@material-ui/core/Container";
 
 export default class Calculator extends React.Component {
   constructor(props) {
@@ -193,43 +194,47 @@ export default class Calculator extends React.Component {
         {/* <Row>
           <Display>ABCBASDBJKASDLKASJDl</Display>
         </Row> */}
-        <Row>
-          <Display>
-            {this.state.input === ""
-              ? this.state.previousNumber
-              : this.state.input}
-          </Display>
-        </Row>
-        <Row>
-          <Button handleClick={this.clearInput}>Clear</Button>
-          <Button handleClick={this.removeLastCharacter}>←</Button>
-          <Button disabled={true} />
-          <OperatorButton handleClick={this.addition}>+</OperatorButton>
-        </Row>
-        <Row>
-          <Button handleClick={this.addToInput}>7</Button>
-          <Button handleClick={this.addToInput}>8</Button>
-          <Button handleClick={this.addToInput}>9</Button>
-          <OperatorButton handleClick={this.substract}>-</OperatorButton>
-        </Row>
-        <Row>
-          <Button handleClick={this.addToInput}>4</Button>
-          <Button handleClick={this.addToInput}>5</Button>
-          <Button handleClick={this.addToInput}>6</Button>
-          <OperatorButton handleClick={this.multiply}>×</OperatorButton>
-        </Row>
-        <Row>
-          <Button handleClick={this.addToInput}>1</Button>
-          <Button handleClick={this.addToInput}>2</Button>
-          <Button handleClick={this.addToInput}>3</Button>
-          <OperatorButton handleClick={this.divide}>÷</OperatorButton>
-        </Row>
-        <Row>
-          <Button handleClick={this.addZeroToInput}>0</Button>
-          <Button handleClick={this.plusMinus}>+/-</Button>
-          <Button handleClick={this.addDecimal}>.</Button>
-          <EqualButton handleClick={this.equalSign}>=</EqualButton>
-        </Row>
+        <Container className="calc-container" maxWidth="sm">
+          <Row>
+            <Display>
+              {this.state.input === ""
+                ? this.state.previousNumber
+                : this.state.input}
+            </Display>
+          </Row>
+          <Row>
+            <Button handleClick={this.clearInput}>Clear</Button>
+            <Button handleClick={this.removeLastCharacter}>←</Button>
+            <Button disabled={true} />
+            <OperatorButton handleClick={this.addition}>+</OperatorButton>
+          </Row>
+          <Row>
+            <Button handleClick={this.addToInput}>7</Button>
+            <Button handleClick={this.addToInput}>8</Button>
+            <Button handleClick={this.addToInput}>9</Button>
+            <OperatorButton handleClick={this.substract}>-</OperatorButton>
+          </Row>
+          <Row>
+            <Button handleClick={this.addToInput}>4</Button>
+            <Button handleClick={this.addToInput}>5</Button>
+            <Button handleClick={this.addToInput}>6</Button>
+            <OperatorButton handleClick={this.multiply}>×</OperatorButton>
+          </Row>
+          <Row>
+            <Button handleClick={this.addToInput}>1</Button>
+            <Button handleClick={this.addToInput}>2</Button>
+            <Button handleClick={this.addToInput}>3</Button>
+            <OperatorButton handleClick={this.divide}>÷</OperatorButton>
+          </Row>
+          <Row>
+            <Button handleClick={this.addZeroToInput}>0</Button>
+            <Button handleClick={this.plusMinus}>+/-</Button>
+            <Button handleClick={this.addDecimal}>.</Button>
+            <EqualButton className="calc-equal" handleClick={this.equalSign}>
+              =
+            </EqualButton>
+          </Row>
+        </Container>
       </div>
     );
   }
